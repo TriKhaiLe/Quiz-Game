@@ -40,8 +40,15 @@ const Quiz = ({ topic }) => {
         if (!jsonText) throw new Error("Invalid response format");
 
         const cleanJsonText = jsonText.replace(/```json|```/g, "").trim();
-        const questionsData = JSON.parse(cleanJsonText);
-
+        const questionsData = JSON.parse(cleanJsonText).map((q) => {
+          // Lấy đáp án chính xác dựa trên chỉ mục của nó trong danh sách `answers`
+          const answerIndex = ["a", "b", "c", "d"].indexOf(q.correctAnswer.toLowerCase());
+          return {
+            ...q,
+            correctAnswer: answerIndex !== -1 ? q.answers[answerIndex] : q.correctAnswer,
+          };
+        });
+                
         setQuestions(questionsData);
       } catch (error) {
         console.error("Error fetching questions:", error);
