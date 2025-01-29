@@ -10,6 +10,7 @@ const Quiz = ({ topic }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Quiz = ({ topic }) => {
   
         // Loại bỏ Markdown code block nếu có
         const cleanJsonText = jsonText.replace(/```json|```/g, "").trim();
-          const questionsData = JSON.parse(cleanJsonText);
+        const questionsData = JSON.parse(cleanJsonText);
   
         setQuestions(questionsData);
       } catch (error) {
@@ -36,19 +37,21 @@ const Quiz = ({ topic }) => {
         setError("Invalid topic or API error. Please try again.");
       }
     };
-  
+
     fetchQuestions();
   }, [topic]);
-  
+
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
+    setShowCorrectAnswer(true);
+    if (answer === questions[currentQuestion].correctAnswer) {
+      setScore(score + 1);
+    }
   };
 
   const handleNextQuestion = () => {
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
     setSelectedAnswer(null);
+    setShowCorrectAnswer(false);
     setCurrentQuestion(currentQuestion + 1);
   };
 
@@ -69,14 +72,22 @@ const Quiz = ({ topic }) => {
       <h2>{questions[currentQuestion].question}</h2>
       <div>
         {questions[currentQuestion].answers.map((answer, index) => (
-          <button key={index} onClick={() => handleAnswerSelect(answer)}>
+          <button 
+            key={index} 
+            onClick={() => handleAnswerSelect(answer)}
+            disabled={showCorrectAnswer}
+            style={{ backgroundColor: showCorrectAnswer && answer === questions[currentQuestion].correctAnswer ? 'green' : '' }}
+          >
             {answer}
           </button>
         ))}
       </div>
-      <button onClick={handleNextQuestion} disabled={!selectedAnswer}>
-        Next
-      </button>
+      {showCorrectAnswer && (
+        <div>
+          <p>Correct answer: {questions[currentQuestion].correctAnswer}</p>
+          <button onClick={handleNextQuestion}>Next</button>
+        </div>
+      )}
       <div>Score: {score}</div>
     </div>
   );
