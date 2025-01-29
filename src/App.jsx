@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Quiz from './Quiz';
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
 import './App.css';
 
 function App() {
@@ -15,22 +16,28 @@ function App() {
   };
 
   return (
-    <div>
+    <Container maxWidth="sm" style={{ marginTop: '2rem', textAlign: 'center' }}>
       {!startQuiz ? (
-        <div>
-          <h1>Welcome to the Quiz Game</h1>
-          <input
-            type="text"
-            placeholder="Enter topic"
+        <Box>
+          <Typography variant="h3" gutterBottom>
+            Welcome to the Quiz Game
+          </Typography>
+          <TextField
+            label="Enter topic"
+            variant="outlined"
+            fullWidth
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
+            style={{ marginBottom: '1rem' }}
           />
-          <button onClick={handleStartQuiz}>Start Quiz</button>
-        </div>
+          <Button variant="contained" color="primary" onClick={handleStartQuiz}>
+            Start Quiz
+          </Button>
+        </Box>
       ) : (
         <Quiz topic={topic} />
       )}
-    </div>
+    </Container>
   );
 }
 
