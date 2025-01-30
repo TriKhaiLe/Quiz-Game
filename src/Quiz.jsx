@@ -94,13 +94,13 @@ const Quiz = ({ topic }) => {
     return (
       <Container sx={{ textAlign: "center", mt: 4 }}>
         <CelebrationIcon color="success" sx={{ fontSize: 50 }} />
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" fontWeight="bold" style={{ background: 'linear-gradient(90deg, #ff7e5f, #feb47b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Hoàn thành!
         </Typography>
-        <Typography variant="h6">
+        
+        <Typography variant="h6" style={{ background: 'linear-gradient(90deg, #ff7e5f, #feb47b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Điểm của bạn: <b>{score}</b>/{questions.length}
-        </Typography>
-        <Button
+        </Typography>        <Button
           variant="contained"
           color="primary"
           sx={{ mt: 2 }}
