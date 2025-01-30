@@ -13,13 +13,13 @@ function App() {
       return;
     }
     setStartQuiz(true);
-  };
+  }; 
 
   return (
-    <Container maxWidth="sm" style={{ marginTop: '2rem', textAlign: 'center' }}>
+    <Container maxWidth="sm" className="container">
       {!startQuiz ? (
         <Box>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom className="typography">
             Welcome to the Quiz Game
           </Typography>
           <TextField
@@ -28,9 +28,13 @@ function App() {
             fullWidth
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            style={{ marginBottom: '1rem' }}
+            className="textField"
           />
-          <Button variant="contained" color="primary" onClick={handleStartQuiz}>
+          <Button
+            variant="contained"
+            className="button"
+            onClick={handleStartQuiz}
+          >
             Start Quiz
           </Button>
         </Box>

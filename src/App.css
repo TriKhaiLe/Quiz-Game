@@ -40,3 +40,48 @@
 .read-the-docs {
   color: #888;
 }
+
+.container {
+  margin-top: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.typography {
+  font-weight: bold !important;
+  color: #0077b6;
+}
+
+.textField {
+  margin-bottom: 1rem !important; /* Override Material-UI default margin */
+  background: linear-gradient(135deg, #ffffff, #e3f2fd);
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.textField .MuiOutlinedInput-root fieldset {
+  border-color: #90caf9;
+}
+
+.textField .MuiOutlinedInput-root:hover fieldset {
+  border-color: #64b5f6;
+}
+
+.textField .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #42a5f5;
+}
+
+.button {
+  background: linear-gradient(90deg, #42a5f5, #1e88e5);
+  color: white;
+  padding: 10px 20px !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #1e88e5, #1565c0);
+}
