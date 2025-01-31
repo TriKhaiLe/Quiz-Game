@@ -16,7 +16,7 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-const Quiz = ({ topic }) => {
+const Quiz = ({ topic, difficulty }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -28,7 +28,7 @@ const Quiz = ({ topic }) => {
     const fetchQuestions = async () => {
       try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const prompt = `Create 5 multiple-choice questions on the topic "${topic}" in Vietnamese. 
+        const prompt = `Create 5 multiple-choice questions on the topic "${topic}" with difficulty level ${difficulty} in Vietnamese. 
         Each question has 4 possible answers, one of which is correct. The questions should be short, 
         easy to understand, and general knowledge. Format the response as a JSON array:
         [{ "question": "text", "answers": ["a", "b", "c", "d"], "correctAnswer": "answer" }]`;
@@ -57,7 +57,7 @@ const Quiz = ({ topic }) => {
     };
 
     fetchQuestions();
-  }, [topic]);
+  }, [topic, difficulty]);
 
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);

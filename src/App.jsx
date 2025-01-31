@@ -5,16 +5,18 @@ import './App.css';
 
 function App() {
   const [topic, setTopic] = useState('');
+  const [difficulty, setDifficulty] = useState('');
   const [startQuiz, setStartQuiz] = useState(false);
 
   const handleStartQuiz = () => {
-    if (topic.trim() === '') {
-      alert('Please enter a valid topic.');
+    const difficultyValue = parseInt(difficulty, 10);
+    if (topic.trim() === '' || isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 5) {
+      alert('Please enter a valid topic and difficulty level (1-5).');
       return;
     }
     setStartQuiz(true);
-  }; 
-
+  };
+  
   return (
     <Container maxWidth="sm" className="container">
       {!startQuiz ? (
@@ -30,6 +32,14 @@ function App() {
             onChange={(e) => setTopic(e.target.value)}
             className="textField"
           />
+          <TextField
+            label="Enter difficulty (1-5)"
+            variant="outlined"
+            fullWidth
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            className="textField"
+          />
           <Button
             variant="contained"
             className="button"
@@ -39,7 +49,7 @@ function App() {
           </Button>
         </Box>
       ) : (
-        <Quiz topic={topic} />
+        <Quiz topic={topic} difficulty={difficulty} />
       )}
     </Container>
   );
