@@ -76,6 +76,10 @@ const QuizUI = ({
     );
   }
 
+  const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+    questions[currentQuestion].question
+  )}`;
+
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Card sx={{ boxShadow: 3, borderRadius: 3 }}>
@@ -145,6 +149,16 @@ const QuizUI = ({
           </Typography>
         </CardContent>
       </Card>
+
+      <Box sx={{ mt: 4, textAlign: "center" }}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => window.open(googleSearchUrl, "_blank")}
+        >
+          Search on Google
+        </Button>
+      </Box>
     </Container>
   );
 };
