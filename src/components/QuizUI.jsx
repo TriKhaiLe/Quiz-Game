@@ -89,36 +89,43 @@ const QuizUI = ({
           </Typography>
 
           <Box sx={{ mt: 2 }}>
-            {questions[currentQuestion].answers.map((answer, index) => (
-              <Button
-                key={index}
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 1,
-                  backgroundColor:
-                    showCorrectAnswer &&
-                    answer === questions[currentQuestion].correctAnswer
-                      ? "green"
-                      : showCorrectAnswer && answer === selectedAnswer
-                      ? "red"
-                      : "primary.main",
-                  "&:hover": {
-                    backgroundColor:
-                      showCorrectAnswer &&
-                      answer === questions[currentQuestion].correctAnswer
-                        ? "green"
-                        : showCorrectAnswer && answer === selectedAnswer
-                        ? "red"
-                        : "primary.dark",
-                  },
-                }}
-                onClick={() => handleAnswerSelect(answer)}
-                disabled={showCorrectAnswer}
-              >
-                {answer}
-              </Button>
-            ))}
+          {questions[currentQuestion].answers.map((answer, index) => (
+            <Button
+              key={index}
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 1,
+                background: showCorrectAnswer
+                  ? answer === questions[currentQuestion].correctAnswer
+                    ? "linear-gradient(90deg, #28a745, #218838)" // Đúng: xanh lá
+                    : answer === selectedAnswer
+                    ? "linear-gradient(90deg, #dc3545, #c82333)" // Sai: đỏ
+                    : "linear-gradient(90deg, #f8f9fa, #e9ecef)" // Mặc định: xám nhạt
+                  : "linear-gradient(90deg, #007bff, #0056b3)", // Màu xanh trước khi chọn
+                color: showCorrectAnswer ? "black" : "white", // Giữ chữ màu đen sau khi chọn
+                fontWeight: "bold",
+                textTransform: "none",
+                borderRadius: "8px",
+                transition: "all 0.3s ease-in-out",
+                "&:hover": {
+                  background: showCorrectAnswer
+                    ? answer === questions[currentQuestion].correctAnswer
+                      ? "linear-gradient(90deg, #218838, #1e7e34)"
+                      : answer === selectedAnswer
+                      ? "linear-gradient(90deg, #c82333, #bd2130)"
+                      : "linear-gradient(90deg, #d6d8db, #cfd3d8)" // Màu hover của đáp án chưa chọn
+                    : "linear-gradient(90deg, #0056b3, #004085)",
+                  transform: "scale(1.05)",
+                },
+                opacity: 1, // Không làm mờ khi bị disabled
+              }}
+              onClick={() => handleAnswerSelect(answer)}
+              disabled={showCorrectAnswer}
+            >
+              {answer}
+            </Button>
+          ))}
           </Box>
 
           {showCorrectAnswer && (
