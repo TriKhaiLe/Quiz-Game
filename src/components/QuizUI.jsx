@@ -10,8 +10,6 @@ import {
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import SearchResults from "./SearchResults";
-import { useState } from "react";
 
 const QuizUI = ({
   questions,
@@ -23,13 +21,6 @@ const QuizUI = ({
   handleAnswerSelect,
   handleNextQuestion,
 }) => {
-  const [showSearchResults, setShowSearchResults] = useState(false);
-
-  const handleNextQuestionWithReset = () => {
-    setShowSearchResults(false);
-    handleNextQuestion();
-  };
-
   if (error) {
     return (
       <Container>
@@ -85,7 +76,9 @@ const QuizUI = ({
     );
   }
 
-  const googleSearchQuery = questions[currentQuestion].question;
+  const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+    questions[currentQuestion].question
+  )}`;
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
@@ -147,7 +140,7 @@ const QuizUI = ({
               <Button
                 variant="outlined"
                 sx={{ mt: 2 }}
-                onClick={handleNextQuestionWithReset}
+                onClick={handleNextQuestion}
               >
                 Câu tiếp theo
               </Button>
@@ -160,25 +153,15 @@ const QuizUI = ({
         </CardContent>
       </Card>
 
-      {showCorrectAnswer && (
-        <Box sx={{ mt: 4, textAlign: "center" }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => setShowSearchResults(true)}
-            disabled={!selectedAnswer}
-          >
-            Search on Google
-          </Button>
-        </Box>
-      )}
-
-      {showSearchResults && (
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="h6">Search Results:</Typography>
-          <SearchResults query={googleSearchQuery} />
-        </Box>
-      )}
+      <Box sx={{ mt: 4, textAlign: "center" }}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => window.open(googleSearchUrl, "_blank")}
+        >
+          Search on Google
+        </Button>
+      </Box>
     </Container>
   );
 };
