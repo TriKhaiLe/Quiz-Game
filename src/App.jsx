@@ -10,8 +10,8 @@ function App() {
 
   const handleStartQuiz = () => {
     const difficultyValue = parseInt(difficulty, 10);
-    if (topic.trim() === '' || isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 5) {
-      alert('Please enter a valid topic and difficulty level (1-5).');
+    if (topic.trim() === '' || isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 10) {
+      alert('Please enter a valid topic and difficulty level (1-10).');
       return;
     }
     setStartQuiz(true);
@@ -33,7 +33,7 @@ function App() {
             className="textField"
           />
           <TextField
-            label="Enter difficulty (1-5)"
+            label="Enter difficulty (1-10)"
             variant="outlined"
             fullWidth
             value={difficulty}
