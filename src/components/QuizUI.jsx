@@ -46,7 +46,7 @@ const QuizUI = ({
           variant="h4"
           fontWeight="bold"
           style={{
-            background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
+            background: "linear-gradient(90deg, #ff7e5f, #ff7e5f)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -57,7 +57,7 @@ const QuizUI = ({
         <Typography
           variant="h6"
           style={{
-            background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
+            background: "linear-gradient(90deg, #ff7e5f, #ff7e5f)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
