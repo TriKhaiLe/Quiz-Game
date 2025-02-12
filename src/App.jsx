@@ -51,6 +51,20 @@ function App() {
       ) : (
         <Quiz topic={topic} difficulty={difficulty} />
       )}
+      {startQuiz && (
+        <Box sx={{ mt: 4 }}>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4994237070259235" crossorigin="anonymous"></script>
+          <ins className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-client="ca-pub-4994237070259235"
+            data-ad-slot="7806394673"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </Box>
+      )}
     </Container>
   );
 }
