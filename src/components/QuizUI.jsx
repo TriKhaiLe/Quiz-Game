@@ -141,6 +141,9 @@ const QuizUI = ({
                   {questions[currentQuestion].correctAnswer}
                 </b>
               </Typography>
+              <Typography variant="body2" sx={{ mt: 2 }}>
+                Giải thích: {questions[currentQuestion].explanation}
+              </Typography>
               <Button
                 variant="outlined"
                 sx={{ mt: 2 }}
